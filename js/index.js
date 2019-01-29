@@ -1,3 +1,4 @@
+const body = document.querySelector('body')
 const header = document.querySelector('.main-navigation');
 const h1 = document.querySelector('h1');
 const h2 = document.querySelectorAll('h2');
@@ -6,10 +7,33 @@ const imgs = document.querySelectorAll('img');
 const someText = document.querySelectorAll('p');
 const navItems = document.querySelectorAll('nav a');
 
-//  window.addEventListener('load', () => {
-// 	alert('You are the 1 millionth visitor! Claim your free vacation!');
-// });
+ window.addEventListener('load', () => {
+	alert('You are the 1 millionth visitor! Claim your free vacation!');
+});
 
+header.addEventListener('dblclick', e => {
+    header.style.background = "grey";
+})
+
+navItems.forEach((e) =>
+	e.addEventListener('click', e => {
+		e.preventDefault();
+		console.log('Default prevented');
+	})
+);
+
+
+window.addEventListener('scroll', e => {
+    console.log('this is the scariest website ever')
+});
+
+body.addEventListener('keydown', e => {
+    body.style.background = 'lightgrey';
+});
+
+body.addEventListener('select', e => {
+    body.style.background = 'grey';
+});
 
 h1.addEventListener('click', () => {
     h1.textContent = 'Scary Bus';
@@ -52,13 +76,15 @@ h4[2].addEventListener('click', () => {
 });
 
 imgs[0].addEventListener('mouseover', e => {
-    imgs[0].addEventListener('click', e => {
-        alert('Oh no, this page is not what is seems! Click on this page\'s text to see what really is going on!');
-    })
     imgs[0].setAttribute('src', "img/scary-bus.png");
     imgs[0].addEventListener('mouseout', e => {
         imgs[0].setAttribute('src', 'img/fun-bus.jpg')
     });
+});
+
+imgs[0].addEventListener('click', e => {
+    alert('Oh no, this page is not what is seems! Click on this page\'s text to see what really is going on!');
+    e.stopPropagation();
 });
 
 imgs[1].addEventListener('mouseover', e => {
